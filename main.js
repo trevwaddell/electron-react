@@ -1,5 +1,5 @@
-const { app, BrowserWindow } = require("electron");
 const electron = require("electron");
+const { app, BrowserWindow, ipcMain } = electron;
 
 const path = require("path");
 const url = require("url");
@@ -17,5 +17,9 @@ function createWindow() {
     })
   );
 }
+
+ipcMain.on("UI_MOUNTED", (e, data) => {
+  console.log(data, "=================");
+});
 
 app.on("ready", createWindow);
