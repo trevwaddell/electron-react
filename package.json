@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "app": "electron .",
-    "ui": "webpack -wd",
+    "build:dev": "webpack -wd",
+    "build:prod": "webpack -p",
     "start": "concurrently \"yarn ui \"  \"yarn app\""
   },
   "devDependencies": {

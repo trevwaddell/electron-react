@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 const { ipcRenderer } = window.require("electron");
 
+import Home from "./Home/Home";
+
 export default class App extends Component {
   constructor() {
     super();
@@ -13,6 +15,10 @@ export default class App extends Component {
   }
 
   render() {
-    return <h1>Hello World</h1>;
+    return (
+      <div>
+        <Home />
+      </div>
+    );
   }
 }
