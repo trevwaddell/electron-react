@@ -1,37 +1,27 @@
 import React, { Component, Fragment } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { openModal, closeModal } from "../../actions/";
-
+import Header from "../Header/Header";
 import Modal from "../../components/Modal/Modal";
-import FeedbackModal from "../../components/Feedback";
-import LockModal from "../../components/Modal/LockModal";
+import Feedback from "../../components/Modal/Feedback";
+import Lock from "../../components/Modal/Lock";
+
+import Tabs from "../Tabs/Tabs";
 
 class Home extends Component {
   constructor() {
     super();
-
-    this.openModal = this.openModal.bind(this);
     this.getModalComponent = this.getModalComponent.bind(this);
     this.state = {};
-  }
-
-  openModal(modal) {
-    this.props.openModal(modal);
-  }
-
-  closeModal(modal) {
-    this.props.closeModal();
   }
 
   getModalComponent() {
     const { modal } = this.props;
     switch (modal.modal) {
       case "feedback":
-        return <FeedbackModal />;
+        return <Feedback />;
       case "lock":
-        return <LockModal />;
+        return <Lock />;
       default:
         return <p>insert modal component here</p>;
     }
@@ -40,11 +30,8 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <div>
-          <button onClick={() => this.openModal("feedback")}>
-            toggle modal
-          </button>
-        </div>
+        <Header />
+        <Tabs />
         {this.props.modal.open ? (
           <Modal>{this.getModalComponent()}</Modal>
         ) : null}
@@ -59,8 +46,4 @@ function mapStateToProps({ modal }) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ openModal, closeModal }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);
