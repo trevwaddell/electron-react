@@ -1,14 +1,10 @@
-const {
-  default: installExtension,
-  REDUX_DEVTOOLS
-} = require("electron-devtools-installer");
-
-installExtension(REDUX_DEVTOOLS)
-  .then(name => console.log(`Added Extension:  ${name}`))
-  .catch(err => console.log("An error occurred: ", err));
-
 const electron = require("electron");
 const { app, BrowserWindow, ipcMain } = electron;
+const {
+  default: installExtension,
+  REDUX_DEVTOOLS,
+  REACT_DEVELOPER_TOOLS
+} = require("electron-devtools-installer");
 
 const path = require("path");
 const url = require("url");
@@ -31,4 +27,10 @@ ipcMain.on("UI_MOUNTED", (e, data) => {
   console.log(data, "=================");
 });
 
-app.on("ready", createWindow);
+app.on("ready", () => {
+  installExtension([REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS])
+    .then(name => console.log(`Added Extension:  ${name}`))
+    .catch(err => console.log("An error occurred: ", err));
+
+  createWindow();
+});
