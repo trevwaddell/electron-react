@@ -18,6 +18,9 @@ export default class Modal extends Component {
   }
 
   render() {
-    return createPortal(this.props.children, this.el);
+    return createPortal(
+      <div className="global-modal">{this.props.children}</div>,
+      this.el
+    );
   }
 }

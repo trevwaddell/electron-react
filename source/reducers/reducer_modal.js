@@ -1,4 +1,4 @@
-import { TOGGLE_MODAL } from "../actions/";
+import { OPEN_MODAL, CLOSE_MODAL } from "../actions/";
 
 const initialState = {
   open: false,
@@ -7,7 +7,9 @@ const initialState = {
 
 const toggleModal = (state = initialState, action) => {
   switch (action.type) {
-    case TOGGLE_MODAL:
+    case OPEN_MODAL:
+      return action.payload;
+    case CLOSE_MODAL:
       return action.payload;
     default:
       return state;
