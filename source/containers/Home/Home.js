@@ -3,10 +3,6 @@ import { connect } from "react-redux";
 
 import Header from "../Header/Header";
 import Modal from "../../components/Modal/Modal";
-import Feedback from "../../components/Modal/Feedback";
-import Lock from "../../components/Modal/Lock";
-
-import Tabs from "../Tabs/Tabs";
 
 class Home extends Component {
   constructor() {
@@ -18,10 +14,8 @@ class Home extends Component {
   getModalComponent() {
     const { modal } = this.props;
     switch (modal.modal) {
-      case "feedback":
-        return <Feedback />;
       case "lock":
-        return <Lock />;
+        return <p> Lock Modal </p>;
       default:
         return <p>insert modal component here</p>;
     }
@@ -31,7 +25,6 @@ class Home extends Component {
     return (
       <Fragment>
         <Header />
-        <Tabs />
         {this.props.modal.open ? (
           <Modal>{this.getModalComponent()}</Modal>
         ) : null}

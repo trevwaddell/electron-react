@@ -18,7 +18,6 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.openModal("feedback")}>Feedback</button>
         <button onClick={() => this.openModal("lock")}>Lock</button>
       </div>
     );
